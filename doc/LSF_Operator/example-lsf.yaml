@@ -19,10 +19,10 @@ spec:
   # The licenses are available from this site:
   #      http://www-03.ibm.com/software/sla/sladb.nsf
   # Use the search option to find IBM Spectrum LSF CE
-  licenseAccepted: false
+  licenseAccepted: true
 
   # The namespace to deploy in.  Use the same namespace as the LSF operator
-  namespace: ibm-lsf-project
+  namespace: build241279
 
   # Provide the name of the service account you wish to use
   serviceAccount: my-new-sa
@@ -39,15 +39,17 @@ spec:
     # The administrators is a list of usernames that can perform
     # LSF administrative functions using the LSF GUI.
     #
-    # administrators:
-    # - someuser
+    administrators:
+      - wanyong
 
     # PersistentVolumeClaim (Storage volume) parameters
     pvc:
       dynamicStorage: false
       storageClass: ""
-      selectorLabel: "lsfvol"
-      selectorValue: "lsfvol"
+      #selectorLabel: "lsfvol"
+      #selectorValue: "lsfvol"
+      selector:
+        name: "pvib16b08"
       size: "20G"
 
     # The cluster needs to access users home directories and applications
@@ -206,8 +208,8 @@ spec:
       # to the pods in LSF
       provider:
         - rhel7
-        - app1
-        - app2
+        #- app1
+        #- app2
 
       # Define where to get the image from
       image: "ibmcom/lsfce-comp:10.1.0.9"
